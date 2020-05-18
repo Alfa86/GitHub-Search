@@ -7,6 +7,7 @@ export default class App extends React.Component {
   state = {
     query: "",
     user: [],
+    loading: false,
   };
 
   setQuery = (event) => {
@@ -14,18 +15,22 @@ export default class App extends React.Component {
   };
 
   querySearch = () => {
+    this.setState({ loading: true });
+
     fetch(`https://api.github.com/users/${this.state.query}`)
       .then((response) => response.json())
-      .then((user) => this.setState({ user: user }));
+      .then((user) => {
+        this.setState({ loading: false });
+        this.setState({ user: user });
+      });
   };
 
-  componentDidMount() {
-    this.querySearch();
-  }
+  // componentDidMount() {
+  //   this.querySearch();
+  // }
 
   render() {
-    if (!this.state.user) {
-      console.log(this.state.user);
+    if (this.state.loading) {
       return <h4>Loading users info...</h4>;
     } else {
       return (

@@ -24,11 +24,12 @@ export default class App extends React.Component {
         this.setState({ loading: false });
         this.setState({ user: user });
       });
+
     fetch(`https://api.github.com/users/${this.state.query}/repos`)
       .then((response) => response.json())
       .then((repo) => {
-        this.setState({ loading: false });
-        this.setState({ repos: repo });
+        // this.setState({ loading: false });
+        this.setState({ repo: repo });
       });
   };
 
@@ -46,17 +47,16 @@ export default class App extends React.Component {
             bio={this.state.user.bio}
           />
           <ul>
-            {repo &&
-              this.state.repos.map((repo) => {
-                return (
-                  <>
-                    <li>
-                      <p>{repo.id}</p>
-                      <p>{repo.name}</p>
-                    </li>
-                  </>
-                );
-              })}
+            {this.state.repo.map((repo) => {
+              return (
+                <>
+                  <li>
+                    <p>{repo.id}</p>
+                    <p>{repo.name}</p>
+                  </li>
+                </>
+              );
+            })}
           </ul>
         </div>
       );

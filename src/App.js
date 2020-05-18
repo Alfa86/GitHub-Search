@@ -3,42 +3,43 @@ import Search from "./input";
 import "./style/style.scss";
 import User from "./UserInfo";
 
-function App() {
-  // state = {
-  //   query: "",
-  // };
-  // setQuery = (event) => {
-  //   this.setState({ query: event.target.value });
-  // };
+export default class App extends React.Component {
+  state = {
+    query: "",
+    user: null,
+  };
 
-  const API_URI = "https://api.github.com/users/facebook";
+  setQuery = (event) => {
+    this.setState({ query: event.target.value });
+  };
 
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch(API_URI)
+  // const [data, setData] = useState(null);
+  querySearch = () => {
+    fetch(`https://api.github.com/users/${this.state.query}`)
       .then((response) => response.json())
-      .then((user) => setData(user));
-  }, []);
+      .then((user) => this.setState({ user: user }));
+  };
 
-  // querySearch = () => {};
-
-  if (!data) {
-    return <h4>Loading users info...</h4>;
+  componentDidMount() {
+    this.querySearch();
   }
 
-  return (
-    <div>
-      {/* <Search querySearch={this.querySearch} setQuery={this.setQuery} /> */}
-      <Search />
-      <User
-        img={data.avatar_url}
-        name={data.name}
-        location={data.location}
-        bio={data.bio}
-      />
-    </div>
-  );
+  render() {
+    if (!this.state.user) {
+      return <h4>Loading users info...</h4>;
+    } else {
+      return (
+        <div className="App">
+          <Search querySearch={this.querySearch} setQuery={this.setQuery} />
+          {/* <Search /> */}
+          <User
+            img={this.state.user.avatar_url}
+            name={this.state.user.name}
+            location={this.state.user.location}
+            bio={this.state.user.bio}
+          />
+        </div>
+      );
+    }
+  }
 }
-
-export default App;

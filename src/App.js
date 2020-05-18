@@ -7,6 +7,7 @@ export default class App extends React.Component {
   state = {
     query: "",
     user: [],
+    repo: [],
     loading: false,
   };
 
@@ -23,11 +24,13 @@ export default class App extends React.Component {
         this.setState({ loading: false });
         this.setState({ user: user });
       });
+    fetch(`https://api.github.com/users/${this.state.query}/repos`)
+      .then((response) => response.json())
+      .then((repo) => {
+        this.setState({ loading: false });
+        this.setState({ repos: repo });
+      });
   };
-
-  // componentDidMount() {
-  //   this.querySearch();
-  // }
 
   render() {
     if (this.state.loading) {
@@ -42,6 +45,19 @@ export default class App extends React.Component {
             location={this.state.user.location}
             bio={this.state.user.bio}
           />
+          <ul>
+            {repo &&
+              this.state.repos.map((repo) => {
+                return (
+                  <>
+                    <li>
+                      <p>{repo.id}</p>
+                      <p>{repo.name}</p>
+                    </li>
+                  </>
+                );
+              })}
+          </ul>
         </div>
       );
     }

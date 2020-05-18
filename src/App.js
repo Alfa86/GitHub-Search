@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Search from "./input";
+import "./style/style.scss";
 import User from "./UserInfo";
 import "./App.css";
 
 function App() {
+  // state = {
+  //   query: "",
+  // };
+  // setQuery = (event) => {
+  //   this.setState({ query: event.target.value });
+  // };
+
   const API_URI = "https://api.github.com/users/facebook";
 
   const [data, setData] = useState(null);
@@ -14,12 +22,15 @@ function App() {
       .then((user) => setData(user));
   }, []);
 
+  // querySearch = () => {};
+
   if (!data) {
-    return <h2>Loading users info...</h2>;
+    return <h4>Loading users info...</h4>;
   }
 
   return (
     <div className="App">
+      {/* <Search querySearch={this.querySearch} setQuery={this.setQuery} /> */}
       <Search />
       <User
         img={data.avatar_url}

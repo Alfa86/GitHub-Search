@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Search from "./input";
 import "./style/style.scss";
 import User from "./UserInfo";
-import "./App.css";
 
 function App() {
   // state = {
@@ -29,7 +28,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div>
       {/* <Search querySearch={this.querySearch} setQuery={this.setQuery} /> */}
       <Search />
       <User

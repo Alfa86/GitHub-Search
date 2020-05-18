@@ -2,6 +2,7 @@ import React from "react";
 import Search from "./input";
 import "./style/style.scss";
 import User from "./UserInfo";
+import Repos from "./RepoList";
 
 export default class App extends React.Component {
   state = {
@@ -48,13 +49,7 @@ export default class App extends React.Component {
           />
           <div className="repo-list">
             {this.state.repo.map((repo) => {
-              return (
-                <>
-                  <div>
-                    <b>Repo Id:</b> {repo.id} | <b>Repo name:</b> {repo.name}
-                  </div>
-                </>
-              );
+              return <Repos id={repo.id} name={repo.name} />;
             })}
           </div>
         </div>

@@ -63,7 +63,13 @@
   }
 }
 .repo-list {
-  display: flex;
-  flex-direction: column;
+  display: inherit;
   align-items: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 25px;
+  border: 1px solid #acacac;
+  border-radius: 3px;
+  margin: 0px auto;
+  margin-top: 25px;
 }

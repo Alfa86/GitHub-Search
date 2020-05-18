@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Search from "./input";
 import "./style/style.scss";
 import User from "./UserInfo";
@@ -6,14 +6,13 @@ import User from "./UserInfo";
 export default class App extends React.Component {
   state = {
     query: "",
-    user: null,
+    user: [],
   };
 
   setQuery = (event) => {
     this.setState({ query: event.target.value });
   };
 
-  // const [data, setData] = useState(null);
   querySearch = () => {
     fetch(`https://api.github.com/users/${this.state.query}`)
       .then((response) => response.json())
@@ -26,12 +25,12 @@ export default class App extends React.Component {
 
   render() {
     if (!this.state.user) {
+      console.log(this.state.user);
       return <h4>Loading users info...</h4>;
     } else {
       return (
         <div className="App">
           <Search querySearch={this.querySearch} setQuery={this.setQuery} />
-          {/* <Search /> */}
           <User
             img={this.state.user.avatar_url}
             name={this.state.user.name}

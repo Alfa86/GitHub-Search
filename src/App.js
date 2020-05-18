@@ -46,18 +46,17 @@ export default class App extends React.Component {
             location={this.state.user.location}
             bio={this.state.user.bio}
           />
-          <ul>
+          <div className="repo-list">
             {this.state.repo.map((repo) => {
               return (
                 <>
-                  <li>
-                    <p>{repo.id}</p>
-                    <p>{repo.name}</p>
-                  </li>
+                  <div>
+                    <b>Repo Id:</b> {repo.id} | <b>Repo name:</b> {repo.name}
+                  </div>
                 </>
               );
             })}
-          </ul>
+          </div>
         </div>
       );
     }

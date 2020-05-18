@@ -49,7 +49,7 @@ export default class App extends React.Component {
           />
           <div className="repo-list">
             {this.state.repo.map((repo) => {
-              return <Repos id={repo.id} name={repo.name} />;
+              return <Repos key={repo.id} id={repo.id} name={repo.name} />;
             })}
           </div>
         </div>

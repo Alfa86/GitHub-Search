@@ -7,13 +7,13 @@ class Search extends React.Component {
         <div className="header__container">
           <p>GitHub Username:</p>
           <div className="header__container--query-input">
-            <form>
+            <form onSubmit={this.props.querySearch}>
               <input
                 type="text"
                 placeholder="e.g. facebook"
                 onChange={this.props.setQuery}
               />
-              <button onClick={this.props.querySearch}>GO!</button>
+              <input className="submit-button" type="submit" value="GO!" />
             </form>
           </div>
         </div>

@@ -3,6 +3,8 @@ import Search from "./input";
 import "./style/style.scss";
 import User from "./UserInfo";
 import Repos from "./RepoList";
+import NavBar from "./navBar";
+// import DeveloperImg from "./images/github_develope.svg";
 
 export default class App extends React.Component {
   state = {
@@ -35,11 +37,18 @@ export default class App extends React.Component {
   };
 
   render() {
+    console.log(this.state.user);
     if (this.state.loading) {
       return <h4>Loading users info...</h4>;
     } else {
       return (
         <div className="App">
+          {/* <img
+            className="search_img"
+            src={DeveloperImg}
+            alt="Github search"
+          ></img> */}
+          <NavBar></NavBar>
           <Search querySearch={this.querySearch} setQuery={this.setQuery} />
           <User
             img={this.state.user.avatar_url}

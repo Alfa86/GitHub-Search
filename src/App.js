@@ -37,17 +37,12 @@ export default class App extends React.Component {
   };
 
   render() {
-    console.log(this.state.user);
+    // console.log(this.state.user);
     if (this.state.loading) {
       return <h4>Loading users info...</h4>;
     } else {
       return (
         <div className="App">
-          {/* <img
-            className="search_img"
-            src={DeveloperImg}
-            alt="Github search"
-          ></img> */}
           <NavBar></NavBar>
           <Search querySearch={this.querySearch} setQuery={this.setQuery} />
           <User

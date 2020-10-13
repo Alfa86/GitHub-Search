@@ -13,17 +13,23 @@ class Search extends React.Component {
             src={DeveloperImg}
             alt="Github search"
           ></img>
-          <p>GitHub Username:</p>
+          {/* <p>Find a User</p>
+          <p>Tipe a username and find a profile</p> */}
           <div className="header__container--query-input">
             <form onSubmit={this.props.querySearch}>
               <input
                 className="inputSearch"
                 type="text"
-                placeholder="e.g. facebook"
+                placeholder="Enter user name e.g. facebook"
                 onChange={this.props.setQuery}
               />
               <button className="submit-button" type="submit" value="GO!">
-                Search <Icon path={mdiMagnify} size={1}></Icon>
+                Search{" "}
+                <Icon
+                  className="search_icon"
+                  path={mdiMagnify}
+                  size={1.1}
+                ></Icon>
               </button>
               {/* <Icon
                 path={mdiAccount}
